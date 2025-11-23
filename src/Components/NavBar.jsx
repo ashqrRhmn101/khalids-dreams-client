@@ -4,10 +4,13 @@ export default function NavBar() {
   const links = (
     <>
       <li>
-        <Link href="/">All Products</Link>
+        <Link href="/Products/allProducts">All Products</Link>
       </li>
       <li>
-        <Link href="/">All</Link>
+        <Link href="/addProduct">Add Product</Link>
+      </li>
+      <li>
+        <Link href="/manageProducts">My Products</Link>
       </li>
     </>
   );
