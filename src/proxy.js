@@ -1,18 +1,20 @@
 import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function proxy(request) {
-  const user = true;
-  return NextResponse.redirect(new URL("/", request.url));
+  const cookieHeader = request.headers.get("cookie") || "";
+
+  // Cookie authUser check
+  const loggedIn = cookieHeader.includes("authUser=");
+
+  // !User  redirect
+  if (!loggedIn) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // User > pass-through
+  return NextResponse.next();
 }
 
-// Alternatively, you can use a default export:
-// export default function proxy(request) { ... }
-
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: [
-    "/addProduct/:path*",
-    "/manageProducts/:path*",
-  ]
+  matcher: ["/addProduct/:path*", "/manageProducts/:path*"],
 };

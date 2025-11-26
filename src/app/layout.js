@@ -25,11 +25,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen container mx-auto`}
       >
-        <NavBar />
-        <div className="flex-1">
-          <AuthProvider>{children}</AuthProvider>
-        </div>
-        <Footer />
+        <AuthProvider>
+          <NavBar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

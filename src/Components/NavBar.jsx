@@ -1,6 +1,21 @@
+"use client";
+
+import { AuthContext } from "@/contexts/authContext";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function NavBar() {
+  const { user, signOutUser } = useContext(AuthContext);
+  console.log(user);
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -51,12 +66,20 @@ export default function NavBar() {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link href="/Auth/login">
-            <button className="btn btn-success">Login</button>
-          </Link>
-          <Link href="/Auth/register">
-            <button className="btn ">Register</button>
-          </Link>
+          {user ? (
+            <Link onClick={handleSignOut} href="/" className="btn btn-success">
+              Logout
+            </Link>
+          ) : (
+            <>
+              <Link href="/Auth/login">
+                <button className="btn btn-success">Login</button>
+              </Link>
+              <Link href="/Auth/register">
+                <button className="btn ">Register</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
