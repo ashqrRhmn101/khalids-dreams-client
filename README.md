@@ -15,26 +15,26 @@ It includes server-side product fetching, admin product creation, authentication
 
 ## Key Features
 
-* Server-rendered product listing (`app/Products/allproducts/page.jsx`)
-* Create/Add product form (client component) with validation
-* Protected routes (PrivateRoute) for admin pages
-* API Routes that proxy/serve MongoDB data (`/api/products`, `/api/products/[id]`)
-* Clean responsive UI with Tailwind CSS
-* Uses cookies for auth persistence (`cookies-next`)
-* Ready for Vercel deployment (live link above)
+- Server-rendered product listing (`app/Products/allproducts/page.jsx`)
+- Create/Add product form (client component) with validation
+- Protected routes (PrivateRoute) for admin pages
+- API Routes that proxy/serve MongoDB data (`/api/products`, `/api/products/[id]`)
+- Clean responsive UI with Tailwind CSS
+- Uses cookies for auth persistence (`cookies-next`)
+- Ready for Vercel deployment (live link above)
 
 ---
 
 ## Tech Stack
 
-* **Frontend / Framework:** Next.js (App Router)
-* **Styling:** Tailwind CSS / DaisyUI (optional)
-* **Backend / DB:** Node.js + Express (local) or Next.js API routes + MongoDB (Mongoose)
-* **Auth:** Firebase Authentication (or custom JWT)
-* **HTTP client:** Axios / fetch
-* **Forms:** React Hook Form
-* **Notifications:** SweetAlert2
-* **Cookies:** cookies-next
+- **Frontend / Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS / DaisyUI (optional)
+- **Backend / DB:** Node.js + Express (local) or Next.js API routes + MongoDB (Mongoose)
+- **Auth:** Firebase Authentication (or custom JWT)
+- **HTTP client:** Axios / fetch
+- **Forms:** React Hook Form
+- **Notifications:** SweetAlert2
+- **Cookies:** cookies-next
 
 ---
 
@@ -118,9 +118,9 @@ npm run dev
 
 ## API Examples
 
-* `GET /api/products` — fetch all products
-* `GET /api/products/:id` — fetch single product
-* `POST http://localhost:5000/products` — save product (used by AddProduct client form)
+- `GET /api/products` — fetch all products
+- `GET /api/products/:id` — fetch single product
+- `POST https://khalids-dreams-server.vercel.app/products` — save product (used by AddProduct client form)
 
 If you use Next.js API routes, mirror external endpoints to `/api/products`.
 
@@ -137,24 +137,26 @@ If you use Next.js API routes, mirror external endpoints to `/api/products`.
 
 ## Tips & Notes
 
-* Client components must **not** be `async`. Keep `async` fetches in Server Components or API routes.
-* When fetching from internal API routes inside a Server Component use:
+- Client components must **not** be `async`. Keep `async` fetches in Server Components or API routes.
+- When fetching from internal API routes inside a Server Component use:
 
 ```js
-await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, { cache: "no-store" })
+await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+  cache: "no-store",
+});
 ```
 
-* For images hosted externally, add allowed domains in `next.config.js`:
+- For images hosted externally, add allowed domains in `next.config.js`:
 
 ```js
 module.exports = {
   images: {
-    domains: ['i.ibb.co', 'your-image-domain.com'],
-  }
-}
+    domains: ["i.ibb.co", "your-image-domain.com"],
+  },
+};
 ```
 
-* Convert numeric form fields to numbers before saving (price, stock) or validate on server.
+- Convert numeric form fields to numbers before saving (price, stock) or validate on server.
 
 ---
 
@@ -182,15 +184,15 @@ This project is released under the **MIT License**. See `LICENSE` for details.
 **Live site:** [https://khalids-dreams-1099.vercel.app/](https://khalids-dreams-1099.vercel.app/)
 If you want, share your GitHub repo URL and I’ll add:
 
-* badges (build, vercel, license)
-* example screenshots (or screenshot files)
-* exact install/run commands tailored to your repo
+- badges (build, vercel, license)
+- example screenshots (or screenshot files)
+- exact install/run commands tailored to your repo
 
 ---
 
 If you want, I can:
 
-* produce a `README.md` file ready-to-paste (I already formatted it),
-* add badges (build/test, license),
-* translate this README into Bangla, or
-* customize the Sections (Screenshots, Troubleshooting, Known Issues).
+- produce a `README.md` file ready-to-paste (I already formatted it),
+- add badges (build/test, license),
+- translate this README into Bangla, or
+- customize the Sections (Screenshots, Troubleshooting, Known Issues).

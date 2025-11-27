@@ -23,7 +23,10 @@ export default function AddProduct() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.post("http://localhost:5000/products", data);
+          const res = await axios.post(
+            "https://khalids-dreams-server.vercel.app/products",
+            data
+          );
           console.log("Saved product:", res.data);
 
           Swal.fire({
@@ -50,7 +53,6 @@ export default function AddProduct() {
       </h2>
 
       <form onSubmit={handleSubmit(handleProductsSubmit)} className="space-y-4">
-        
         {/* Product Image */}
         <div>
           <label className="font-medium">Product Image URL</label>
