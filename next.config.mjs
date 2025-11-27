@@ -4,7 +4,7 @@ const nextConfig = {
   reactCompiler: true,
 
   images: {
-    domains: ["i.ibb.co.com"], // Add allowed image hosts
+    domains: ["i.ibb.co.com", "img.icons8.com"], // Add allowed image hosts
   },
 };
 
