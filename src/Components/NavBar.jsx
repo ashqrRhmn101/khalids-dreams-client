@@ -3,6 +3,7 @@
 import { AuthContext } from "@/contexts/authContext";
 import Link from "next/link";
 import { useContext } from "react";
+import { deleteCookie } from "cookies-next"; 
 
 export default function NavBar() {
   const { user, signOutUser } = useContext(AuthContext);
@@ -10,7 +11,9 @@ export default function NavBar() {
 
   const handleSignOut = () => {
     signOutUser()
-      .then(() => {})
+      .then(() => {
+        deleteCookie("authUser"); 
+      })
       .catch((error) => {
         console.log(error.message);
       });
@@ -29,6 +32,7 @@ export default function NavBar() {
       </li>
     </>
   );
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -42,13 +46,12 @@ export default function NavBar() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
@@ -58,25 +61,28 @@ export default function NavBar() {
               {links}
             </ul>
           </div>
+
           <Link href="/">
             <button className="text-2xl font-bold">KhalidS DreamS</button>
           </Link>
         </div>
+
         <div className="navbar-center hidden md:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
+
         <div className="navbar-end">
           {user ? (
-            <Link onClick={handleSignOut} href="/" className="btn btn-success">
+            <button onClick={handleSignOut} className="btn btn-success">
               Logout
-            </Link>
+            </button>
           ) : (
             <>
               <Link href="/Auth/login">
                 <button className="btn btn-success">Login</button>
               </Link>
               <Link href="/Auth/register">
-                <button className="btn ">Register</button>
+                <button className="btn">Register</button>
               </Link>
             </>
           )}

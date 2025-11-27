@@ -1,7 +1,9 @@
+// "use client";
+
 export default function MyProducts() {
   return (
     <div>
-        <h2>Product</h2>
+        <h2> My Product</h2>
     </div>
   );
 }

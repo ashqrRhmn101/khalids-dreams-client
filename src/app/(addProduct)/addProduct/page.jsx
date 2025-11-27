@@ -1,18 +1,62 @@
+"use client";
+
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
 export default function AddProduct() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleProductsSubmit = async (data) => {
+    Swal.fire({
+      title: "Agree with the post?",
+      text: `You will submit!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Submit!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.post("http://localhost:5000/products", data);
+          console.log("Saved product:", res.data);
+
+          Swal.fire({
+            title: "Excellent",
+            text: "Your Product has been Added.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error(error);
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong!",
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
+
   return (
     <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 my-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Add New Product
       </h2>
 
-      <form className="space-y-4">
-
-        {/* Image */}
+      <form onSubmit={handleSubmit(handleProductsSubmit)} className="space-y-4">
+        
+        {/* Product Image */}
         <div>
           <label className="font-medium">Product Image URL</label>
           <input
             type="text"
-            placeholder="https://example.com/product.jpg"
+            {...register("productUrl", { required: true })}
             className="w-full border p-2 rounded-md"
           />
         </div>
@@ -22,7 +66,7 @@ export default function AddProduct() {
           <label className="font-medium">Product Title</label>
           <input
             type="text"
-            placeholder="Enter product title"
+            {...register("productTitle", { required: true })}
             className="w-full border p-2 rounded-md"
           />
         </div>
@@ -31,26 +75,29 @@ export default function AddProduct() {
         <div>
           <label className="font-medium">Short Description</label>
           <textarea
-            placeholder="Short description about product"
+            {...register("shortDescription")}
             className="w-full border p-2 rounded-md"
             rows="2"
-          ></textarea>
+          />
         </div>
 
         {/* Long Description */}
         <div>
           <label className="font-medium">Long Description</label>
           <textarea
-            placeholder="Detailed product description"
+            {...register("longDescription")}
             className="w-full border p-2 rounded-md"
             rows="4"
-          ></textarea>
+          />
         </div>
 
         {/* Category */}
         <div>
           <label className="font-medium">Category</label>
-          <select className="w-full border p-2 rounded-md">
+          <select
+            {...register("category")}
+            className="w-full border p-2 rounded-md"
+          >
             <option>মধু</option>
             <option>ঘি</option>
             <option>ছাতু এবং শস্য</option>
@@ -65,16 +112,16 @@ export default function AddProduct() {
             <label className="font-medium">Price (৳)</label>
             <input
               type="number"
-              placeholder="Price"
+              {...register("price")}
               className="w-full border p-2 rounded-md"
             />
           </div>
 
           <div>
-            <label className="font-medium">Discount Price (Optional)</label>
+            <label className="font-medium">Discount Price</label>
             <input
               type="number"
-              placeholder="Discount price"
+              {...register("discountPrice")}
               className="w-full border p-2 rounded-md"
             />
           </div>
@@ -86,7 +133,7 @@ export default function AddProduct() {
             <label className="font-medium">Available Stock</label>
             <input
               type="number"
-              placeholder="How many in stock?"
+              {...register("stock")}
               className="w-full border p-2 rounded-md"
             />
           </div>
@@ -95,7 +142,7 @@ export default function AddProduct() {
             <label className="font-medium">Weight / Size</label>
             <input
               type="text"
-              placeholder="e.g. 500g, 1kg"
+              {...register("weight")}
               className="w-full border p-2 rounded-md"
             />
           </div>
@@ -106,7 +153,7 @@ export default function AddProduct() {
           <label className="font-medium">Tags</label>
           <input
             type="text"
-            placeholder="honey, healthy, natural"
+            {...register("tags")}
             className="w-full border p-2 rounded-md"
           />
         </div>
@@ -114,7 +161,10 @@ export default function AddProduct() {
         {/* Status */}
         <div>
           <label className="font-medium">Product Status</label>
-          <select className="w-full border p-2 rounded-md">
+          <select
+            {...register("status")}
+            className="w-full border p-2 rounded-md"
+          >
             <option>Active</option>
             <option>Inactive</option>
           </select>

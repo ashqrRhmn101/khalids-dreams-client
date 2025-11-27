@@ -1,4 +1,5 @@
 // import Image from "next/image";
+"use client"
 
 import Banner from "./about/banner/page";
 import Categories from "./about/categories/page";
@@ -10,7 +11,7 @@ export default function Home() {
    <div>
     <Banner/>
     <Categories/>
-    <AllProducts/>
+    {/* <AllProducts/> */}
     <CustomerReview/>
     {/* <h2>Hello world </h2> */}
    </div>

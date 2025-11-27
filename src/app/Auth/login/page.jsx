@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts/authContext";
 
 export default function Login() {
   const { registerLogin } = useContext(AuthContext);
   const router = useRouter();
+  const [loading, setLoading] = useState(false); 
 
   const {
     register,
@@ -18,17 +19,21 @@ export default function Login() {
   } = useForm();
 
   const userSignIn = (data) => {
+    setLoading(true);
+
     registerLogin(data.email, data.password)
       .then((result) => {
         console.log("Login Success:", result);
 
-        // set cookie
+        // Set cookie
         setCookie("authUser", result.user.uid, { path: "/" });
 
+        setLoading(false);
         router.push("/");
       })
       .catch((error) => {
         console.log(error.message);
+        setLoading(false);
       });
   };
 
@@ -61,9 +66,11 @@ export default function Login() {
             <p className="text-red-500">Password is required</p>
           )}
 
-          <button className="btn btn-neutral mt-4">Login</button>
+          <button className="btn btn-neutral mt-4" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
-          <p className="text-sm">
+          <p className="text-sm mt-2">
             Don’t have any account?{" "}
             <Link href="/Auth/register">
               <span className="text-[#CAEB66]">Register</span>
