@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
+import GoogleSocial from "@/app/about/social/page";
 
 export default function Register() {
   const { registerUser, userProfile, user } = useContext(AuthContext);
@@ -145,6 +146,7 @@ export default function Register() {
           </p>
         </fieldset>
       </form>
+      <GoogleSocial/>
     </div>
   );
 }

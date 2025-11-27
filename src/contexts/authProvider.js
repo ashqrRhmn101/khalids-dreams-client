@@ -12,6 +12,10 @@ import { AuthContext } from "./authContext";
 import { auth } from "@/firebase/firebase.config";
 import { useEffect, useState } from "react";
 
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleProvider = new GoogleAuthProvider();
+
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   // console.log(user);
@@ -29,6 +33,7 @@ export default function AuthProvider({ children }) {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  
 
   //   user Profile
   const userProfile = (photoData) => {

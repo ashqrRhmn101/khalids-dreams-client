@@ -24,11 +24,11 @@ export default function NavBar() {
       <li>
         <Link href="/Products/allProducts">All Products</Link>
       </li>
+      <li>
+        <Link href="/addProduct">Add Product</Link>
+      </li>
       {user && (
         <>
-          <li>
-            <Link href="/addProduct">Add Product</Link>
-          </li>
           <li>
             <Link href="/manageProducts">Manage Products</Link>
           </li>
@@ -101,7 +101,7 @@ export default function NavBar() {
 
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 p-2 shadow"
             >
               <li className="text-gray-700 font-semibold px-2 text-center">
                 {user.displayName}

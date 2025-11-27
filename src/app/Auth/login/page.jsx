@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts/authContext";
+import GoogleSocial from "@/app/about/social/page";
 
 export default function Login() {
   const { registerLogin } = useContext(AuthContext);
@@ -78,6 +79,7 @@ export default function Login() {
           </p>
         </fieldset>
       </form>
+      <GoogleSocial/>
     </div>
   );
 }
