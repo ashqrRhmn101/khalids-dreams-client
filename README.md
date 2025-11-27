@@ -1,6 +1,11 @@
 # Khalid’s Dreams — README
 
-**Live demo:** [https://khalids-dreams-1099.vercel.app/](https://khalids-dreams-1099.vercel.app/)
+## 🚀 **Live demo:** [https://khalids-dreams-1099.vercel.app/](https://khalids-dreams-1099.vercel.app/)
+
+## 🚀 **Live API / Base URL**
+
+```
+https://khalids-dreams-server.vercel.app/
 
 ---
 
