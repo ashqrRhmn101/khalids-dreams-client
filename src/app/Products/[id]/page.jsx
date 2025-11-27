@@ -87,7 +87,7 @@ export default async function ProductDetails({ params }) {
         <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
           <div className="border p-3 rounded-lg bg-gray-50">
             <p className="font-semibold">Weight:</p>
-            <p className="text-gray-700">{product.weight} kg</p>
+            <p className="text-gray-700">{product.weight}</p>
           </div>
 
           <div className="border p-3 rounded-lg bg-gray-50">

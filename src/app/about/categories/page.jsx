@@ -10,8 +10,14 @@ export default function Categories() {
   ];
 
   return (
-    <div className="my-10 px-5">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">Categories</h2>
+    <div className="my-20 px-5">
+      <h2 className="text-3xl font-bold mb-6 text-center py-7 
+    bg-gradient-to-r from-[#03373D] to-[#04666F] 
+    bg-clip-text text-transparent">
+  বিভাগসমূহ
+</h2>
+
+
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-5">
         {items.map((item, index) => (

@@ -3,17 +3,20 @@ import Link from "next/link";
 import { RiDiscountPercentLine } from "react-icons/ri";
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 
-export default async function AllProducts() {
-  const res = await fetch("https://khalids-dreams-server.vercel.app/products", {
-    cache: "no-store",
-  });
+export default async function LatestProducts() {
+  const res = await fetch(
+    "https://khalids-dreams-server.vercel.app/latest-products",
+    {
+      cache: "no-store",
+    }
+  );
 
   const products = await res.json();
 
   return (
     <div className="my-20 container mx-auto px-4">
       <h1 className="text-4xl font-bold text-center mb-10 text-[#03373D]">
-        সকল পণ্যেসমূহ
+        আমাদের সর্বশেষ পণ্যসমূহ
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,12 +70,22 @@ export default async function AllProducts() {
             {/* Details Button */}
             <Link href={`/Products/${item._id}`}>
               <button className="mt-5 bg-[#03373D] hover:bg-[#05525A] text-white px-4 py-2 w-full rounded-lg font-semibold transition-all duration-300">
-                বিস্তারিত
+                View Details
               </button>
             </Link>
           </div>
         ))}
       </div>
+
+      <div className="text-center my-6">
+
+      <Link href="/Products/allProducts">
+        <button className="px-6 py-2 mt-4 bg-gradient-to-r from-[#03373D] to-[#04666F] text-white rounded-lg shadow hover:opacity-90 transition">
+          সকল পণ্য দেখুন
+        </button>
+      </Link>
+      </div>
+
     </div>
   );
 }

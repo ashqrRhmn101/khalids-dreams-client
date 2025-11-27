@@ -68,7 +68,19 @@ export default function NavBar() {
         </div>
 
         <Link href="/">
-          <button className="text-2xl font-bold">KhalidS DreamS</button>
+          <button
+            className="text-2xl font-bold  bg-gradient-to-r from-[#03373D] to-[#06745b] 
+    bg-clip-text text-transparent"
+          >
+           
+            <Image 
+            src="/Logo.jpg"
+                  alt="User Avatar"
+                  width={55}
+                  height={55}
+                  className=""
+                  />
+          </button>
         </Link>
       </div>
 
