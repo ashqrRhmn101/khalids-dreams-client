@@ -22,6 +22,9 @@ export default function NavBar() {
   const links = (
     <>
       <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
         <Link href="/Products/allProducts">All Products</Link>
       </li>
       <li>
@@ -72,14 +75,13 @@ export default function NavBar() {
             className="text-2xl font-bold  bg-gradient-to-r from-[#03373D] to-[#06745b] 
     bg-clip-text text-transparent"
           >
-           
-            <Image 
-            src="/Logo.jpg"
-                  alt="User Avatar"
-                  width={55}
-                  height={55}
-                  className=""
-                  />
+            <Image
+              src="/Logo.jpg"
+              alt="User Avatar"
+              width={55}
+              height={55}
+              className=""
+            />
           </button>
         </Link>
       </div>

@@ -1,6 +1,8 @@
 "use client";
 
+import { AuthContext } from "@/contexts/authContext";
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -11,6 +13,8 @@ export default function AddProduct() {
     reset,
     formState: { errors },
   } = useForm();
+
+  const { user } = useContext(AuthContext);
 
   const handleProductsSubmit = async (data) => {
     Swal.fire({
@@ -55,13 +59,12 @@ export default function AddProduct() {
         Add New Product
       </h2>
 
-      <form
-        onSubmit={handleSubmit(handleProductsSubmit)}
-        className="space-y-5"
-      >
+      <form onSubmit={handleSubmit(handleProductsSubmit)} className="space-y-5">
         {/* Product Image */}
         <div>
-          <label className="font-semibold text-gray-700">Product Image URL</label>
+          <label className="font-semibold text-gray-700">
+            Product Image URL
+          </label>
           <input
             type="text"
             {...register("productUrl", { required: "Image URL is required" })}
@@ -83,13 +86,17 @@ export default function AddProduct() {
             placeholder="Product Name"
           />
           {errors.productTitle && (
-            <p className="text-red-600 text-sm">{errors.productTitle.message}</p>
+            <p className="text-red-600 text-sm">
+              {errors.productTitle.message}
+            </p>
           )}
         </div>
 
         {/* Short Description */}
         <div>
-          <label className="font-semibold text-gray-700">Short Description</label>
+          <label className="font-semibold text-gray-700">
+            Short Description
+          </label>
           <textarea
             {...register("shortDescription")}
             className="w-full border p-3 rounded-md"
@@ -100,7 +107,9 @@ export default function AddProduct() {
 
         {/* Long Description */}
         <div>
-          <label className="font-semibold text-gray-700">Long Description</label>
+          <label className="font-semibold text-gray-700">
+            Long Description
+          </label>
           <textarea
             {...register("longDescription")}
             className="w-full border p-3 rounded-md"
@@ -116,8 +125,9 @@ export default function AddProduct() {
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
+              defaultValue={user?.email}
               className="w-full border p-3 rounded-md"
-              placeholder="example@mail.com"
+              readOnly
             />
             {errors.email && (
               <p className="text-red-600 text-sm">{errors.email.message}</p>
@@ -132,6 +142,7 @@ export default function AddProduct() {
             >
               <option>মধু</option>
               <option>ঘি</option>
+              <option>দই</option>
               <option>ছাতু এবং শস্য</option>
               <option>চাল ও গুড়</option>
               <option>স্ন্যাকস ও ছোট খাদ্য</option>
@@ -155,7 +166,9 @@ export default function AddProduct() {
           </div>
 
           <div>
-            <label className="font-semibold text-gray-700">Discount Price (%)</label>
+            <label className="font-semibold text-gray-700">
+              Discount Price (%)
+            </label>
             <input
               type="number"
               {...register("discountPrice")}
@@ -168,7 +181,9 @@ export default function AddProduct() {
         {/* Stock & Weight */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="font-semibold text-gray-700">Available Stock</label>
+            <label className="font-semibold text-gray-700">
+              Available Stock
+            </label>
             <input
               type="number"
               {...register("stock")}

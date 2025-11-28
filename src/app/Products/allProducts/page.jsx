@@ -43,12 +43,21 @@ export default async function AllProducts() {
               {item.productTitle}
             </h2>
 
+            {/* Sort Description */}
+            <h2 className="text- font- mt-4 text-[#03373da4]">
+              {item.shortDescription
+                ? item.shortDescription.length > 60
+                  ? item.shortDescription.slice(0, 60) + "..."
+                  : item.shortDescription
+                : "No description available"}
+            </h2>
+
             {/* Price & Discount */}
             <div className="flex items-center justify-between mt-3">
               <p className="text-lg font-bold text-green-700">৳ {item.price}</p>
 
               <p className="flex items-center gap-1 text-gray-500 text-sm">
-                <span className="font-semibold">-{item.discountPrice}</span>
+                <span className="font-semibold">- {item.discountPrice || 0}</span>
                 <RiDiscountPercentLine size={18} />
               </p>
             </div>

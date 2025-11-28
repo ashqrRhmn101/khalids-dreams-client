@@ -17,4 +17,5 @@ export function proxy(request) {
 
 export const config = {
   matcher: ["/addProduct/:path*", "/manageProducts/:path*"],
+  // matcher: ["/manageProducts/:path*"],
 };

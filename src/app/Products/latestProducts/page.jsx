@@ -45,13 +45,22 @@ export default async function LatestProducts() {
             <h2 className="text-xl font-bold mt-4 text-[#03373D]">
               {item.productTitle}
             </h2>
+            <h2 className="text- font- mt-4 text-[#03373da4]">
+              {item.shortDescription
+                ? item.shortDescription.length > 60
+                  ? item.shortDescription.slice(0, 60) + "..."
+                  : item.shortDescription
+                : "No description available"}
+            </h2>
 
             {/* Price & Discount */}
             <div className="flex items-center justify-between mt-3">
               <p className="text-lg font-bold text-green-700">৳ {item.price}</p>
 
               <p className="flex items-center gap-1 text-gray-500 text-sm">
-                <span className="font-semibold">-{item.discountPrice}</span>
+                <span className="font-semibold">
+                  - {item.discountPrice || 0}
+                </span>
                 <RiDiscountPercentLine size={18} />
               </p>
             </div>
@@ -78,14 +87,12 @@ export default async function LatestProducts() {
       </div>
 
       <div className="text-center my-6">
-
-      <Link href="/Products/allProducts">
-        <button className="px-6 py-2 mt-4 bg-gradient-to-r from-[#03373D] to-[#04666F] text-white rounded-lg shadow hover:opacity-90 transition">
-          সকল পণ্য দেখুন
-        </button>
-      </Link>
+        <Link href="/Products/allProducts">
+          <button className="px-6 py-2 mt-4 bg-gradient-to-r from-[#03373D] to-[#04666F] text-white rounded-lg shadow hover:opacity-90 transition">
+            সকল পণ্য দেখুন
+          </button>
+        </Link>
       </div>
-
     </div>
   );
 }
